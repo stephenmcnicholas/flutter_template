@@ -1,0 +1,12 @@
+{
+  "programmeName": "V2 — Empty Exercises In Workout",
+  "programmeDescription": "Violation fixture: one workout has no exercises.",
+  "durationWeeks": 4,
+  "workouts": [
+    {
+      "dayOfWeek": "monday",
+      "workoutName": "Empty Monday",
+      "exercises": []
+    }
+  ]
+}

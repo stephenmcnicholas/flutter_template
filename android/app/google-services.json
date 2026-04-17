@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "984128866494",
+    "project_id": "fytter-df3e7",
+    "storage_bucket": "fytter-df3e7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984128866494:android:c97b3d0744b478d7f676ef",
+        "android_client_info": {
+          "package_name": "com.example.fytter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984128866494-3nj9qv5chrg7f9blvqivr438eins1ive.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fytter",
+            "certificate_hash": "52af6b3f128f5cd85027374a3df4d821603ce6fa"
+          }
+        },
+        {
+          "client_id": "984128866494-lrs6nfuinfdtgbgev53cq79dbrb1p121.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeSlBH6LgKv-LQNwrgyssY1u5Fz4VS1zE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984128866494-lrs6nfuinfdtgbgev53cq79dbrb1p121.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "984128866494-amgb3ihijk0g2qc9njl31dnk3tld8pcc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fytter"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

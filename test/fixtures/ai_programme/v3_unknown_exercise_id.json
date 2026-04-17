@@ -1,0 +1,14 @@
+{
+  "programmeName": "V3 — Unknown Exercise ID",
+  "programmeDescription": "Violation fixture: exercise ID not present in library (hallucinated by LLM).",
+  "durationWeeks": 4,
+  "workouts": [
+    {
+      "dayOfWeek": "monday",
+      "workoutName": "Hallucinated Workout",
+      "exercises": [
+        { "exerciseId": "hallucinated-barbell-complex-9999", "sets": 3, "reps": 8 }
+      ]
+    }
+  ]
+}

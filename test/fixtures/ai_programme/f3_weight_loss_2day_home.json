@@ -1,0 +1,37 @@
+{
+  "programmeName": "2-Day Home Circuit",
+  "programmeDescription": "Two full-body sessions per week using only bodyweight — suitable for home training with a weight-loss goal.",
+  "coachIntro": "Two sessions a week is a solid start. Combined with being active on your off days, this will make a real difference.",
+  "coachRationale": "Bodyweight circuits keep heart rate elevated, burning calories while building functional strength. Two sessions per week is realistic for getting started.",
+  "durationWeeks": 4,
+  "personalisationNotes": [
+    "Home training — no equipment required.",
+    "Weight loss goal: exercises selected for elevated heart rate and calorie burn.",
+    "Beginner-friendly movement patterns with low injury risk."
+  ],
+  "weeklyProgression": "Add one rep to each exercise each week. When bodyweight becomes easy, slow down the tempo or add a pause at the bottom position.",
+  "workouts": [
+    {
+      "dayOfWeek": "monday",
+      "workoutName": "Full Body Circuit A",
+      "briefDescription": "Lower-body emphasis with core and upper body support.",
+      "exercises": [
+        { "exerciseId": "squat-bw-1", "sets": 3, "reps": 15, "restSeconds": 60, "coachingNote": "Sit back and keep your chest up." },
+        { "exerciseId": "pushup-1",   "sets": 3, "reps": 10, "restSeconds": 60  },
+        { "exerciseId": "lunge-1",    "sets": 3, "reps": 10, "restSeconds": 60  },
+        { "exerciseId": "plank-1",    "sets": 3, "reps": 30, "restSeconds": 45  }
+      ]
+    },
+    {
+      "dayOfWeek": "thursday",
+      "workoutName": "Full Body Circuit B",
+      "briefDescription": "Upper-body emphasis with lower body support.",
+      "exercises": [
+        { "exerciseId": "pushup-1",   "sets": 3, "reps": 12, "restSeconds": 60 },
+        { "exerciseId": "squat-bw-1", "sets": 3, "reps": 20, "restSeconds": 60 },
+        { "exerciseId": "tricep-1",   "sets": 3, "reps": 10, "restSeconds": 60 },
+        { "exerciseId": "lunge-1",    "sets": 3, "reps": 12, "restSeconds": 60 }
+      ]
+    }
+  ]
+}

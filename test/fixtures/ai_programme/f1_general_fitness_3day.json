@@ -1,0 +1,50 @@
+{
+  "programmeName": "3-Day Barbell Strength",
+  "programmeDescription": "A balanced 3-day programme built around compound barbell lifts for general fitness.",
+  "coachIntro": "This programme builds strength and movement quality across three full-body sessions per week.",
+  "coachRationale": "Three sessions allows full recovery between workouts while maintaining enough frequency to drive adaptation.",
+  "durationWeeks": 4,
+  "personalisationNotes": [
+    "3 training days selected — sessions are structured for full recovery between each.",
+    "Full-gym equipment gives access to barbell compounds.",
+    "General fitness goal: balanced push, pull, and squat patterns across the week."
+  ],
+  "weeklyProgression": "Add 2.5 kg to squat and deadlift when all prescribed reps are completed. Add 1.25 kg to upper body lifts.",
+  "deloadWeek": {
+    "when": "week_4",
+    "guidance": "Reduce load by 40% on all exercises. Focus on technique and movement quality."
+  },
+  "workouts": [
+    {
+      "dayOfWeek": "monday",
+      "workoutName": "Full Body A",
+      "briefDescription": "Squat-led session with horizontal push and pull.",
+      "exercises": [
+        { "exerciseId": "squat-1", "sets": 4, "reps": 5, "restSeconds": 180, "coachingNote": "Drive through heels; brace throughout." },
+        { "exerciseId": "bench-1", "sets": 3, "reps": 8, "restSeconds": 90 },
+        { "exerciseId": "row-1",   "sets": 3, "reps": 8, "restSeconds": 90 }
+      ]
+    },
+    {
+      "dayOfWeek": "wednesday",
+      "workoutName": "Full Body B",
+      "briefDescription": "Hinge-led session with vertical push and pull.",
+      "exercises": [
+        { "exerciseId": "deadlift-1", "sets": 3, "reps": 5, "restSeconds": 180 },
+        { "exerciseId": "ohp-1",      "sets": 3, "reps": 8, "restSeconds": 90 },
+        { "exerciseId": "pullup-1",   "sets": 3, "reps": 6, "restSeconds": 90 }
+      ]
+    },
+    {
+      "dayOfWeek": "friday",
+      "workoutName": "Full Body C",
+      "briefDescription": "Volume session — moderate load, higher reps.",
+      "exercises": [
+        { "exerciseId": "squat-1",   "sets": 3, "reps": 10, "restSeconds": 120 },
+        { "exerciseId": "rdl-1",     "sets": 3, "reps": 10, "restSeconds": 90  },
+        { "exerciseId": "bench-1",   "sets": 3, "reps": 10, "restSeconds": 90  },
+        { "exerciseId": "row-1",     "sets": 3, "reps": 10, "restSeconds": 90  }
+      ]
+    }
+  ]
+}

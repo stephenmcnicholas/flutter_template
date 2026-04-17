@@ -1,0 +1,50 @@
+{
+  "programmeName": "3-Day Knee-Friendly Strength",
+  "programmeDescription": "A 3-day strength programme modified to work around knee discomfort — deep squats and heavy deadlifts avoided.",
+  "coachIntro": "I've adjusted your programme to protect your knee. You can still build real strength — we'll just be smarter about exercise selection.",
+  "coachRationale": "With knee discomfort flagged, I've avoided exercises that load the knee in deep flexion. Romanian deadlifts and lunges are included at controlled depth, which most people with general knee sensitivity manage well.",
+  "durationWeeks": 4,
+  "personalisationNotes": [
+    "Knee discomfort noted — deep squatting and heavy deadlifts excluded.",
+    "Romanian deadlift and controlled lunge depth selected as safer alternatives.",
+    "Additional context applied: 45-minute sessions kept concise with 4 exercises max per session."
+  ],
+  "weeklyProgression": "Add 2.5 kg to RDL when all reps completed. Upper body lifts increase 1.25 kg at a time.",
+  "deloadWeek": {
+    "when": "week_4",
+    "guidance": "Drop sets to 2 per exercise at 50% load. Prioritise pain-free movement."
+  },
+  "workouts": [
+    {
+      "dayOfWeek": "monday",
+      "workoutName": "Upper Body + Hip Hinge",
+      "briefDescription": "Pressing and pulling with a knee-friendly hip hinge.",
+      "exercises": [
+        { "exerciseId": "bench-1", "sets": 3, "reps": 8, "restSeconds": 90 },
+        { "exerciseId": "row-1",   "sets": 3, "reps": 8, "restSeconds": 90 },
+        { "exerciseId": "rdl-1",   "sets": 3, "reps": 8, "restSeconds": 120, "coachingNote": "Hinge at hip, keep bar close, stop when you feel hamstring tension — do not push into knee discomfort." }
+      ]
+    },
+    {
+      "dayOfWeek": "wednesday",
+      "workoutName": "Upper Body + Single Leg",
+      "briefDescription": "Vertical push/pull with controlled single-leg work.",
+      "exercises": [
+        { "exerciseId": "ohp-1",    "sets": 3, "reps": 8, "restSeconds": 90 },
+        { "exerciseId": "pullup-1", "sets": 3, "reps": 6, "restSeconds": 90 },
+        { "exerciseId": "lunge-1",  "sets": 3, "reps": 8, "restSeconds": 90, "coachingNote": "Controlled depth only — stop before any knee discomfort. Step length should feel comfortable." }
+      ]
+    },
+    {
+      "dayOfWeek": "friday",
+      "workoutName": "Full Body Volume",
+      "briefDescription": "Moderate-load volume session across all patterns.",
+      "exercises": [
+        { "exerciseId": "bench-1",   "sets": 3, "reps": 12, "restSeconds": 90 },
+        { "exerciseId": "row-1",     "sets": 3, "reps": 12, "restSeconds": 90 },
+        { "exerciseId": "rdl-1",     "sets": 3, "reps": 12, "restSeconds": 90 },
+        { "exerciseId": "db-curl-1", "sets": 2, "reps": 12, "restSeconds": 60 }
+      ]
+    }
+  ]
+}

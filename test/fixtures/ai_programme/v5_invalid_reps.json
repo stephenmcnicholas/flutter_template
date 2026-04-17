@@ -1,0 +1,14 @@
+{
+  "programmeName": "V5 — Invalid Reps",
+  "programmeDescription": "Violation fixture: an exercise has reps: 0.",
+  "durationWeeks": 4,
+  "workouts": [
+    {
+      "dayOfWeek": "monday",
+      "workoutName": "Bad Prescription",
+      "exercises": [
+        { "exerciseId": "squat-1", "sets": 3, "reps": 0 }
+      ]
+    }
+  ]
+}

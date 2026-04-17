@@ -1,0 +1,74 @@
+{
+  "programmeName": "5-Day Push/Pull/Legs",
+  "programmeDescription": "Upper/lower split with dedicated push, pull, and leg sessions to maximise muscle growth.",
+  "coachIntro": "Five days gives you high frequency and sufficient volume to drive hypertrophy.",
+  "coachRationale": "Push/Pull/Legs is proven for muscle gain — it hits each pattern twice a week with good recovery between same-muscle sessions.",
+  "durationWeeks": 4,
+  "personalisationNotes": [
+    "5 training days selected — muscle gain goal.",
+    "Full gym equipment used throughout.",
+    "Push/pull/legs split maximises volume per muscle group."
+  ],
+  "weeklyProgression": "Add one rep per set each week until you reach the top of the rep range, then add load and drop back to the bottom.",
+  "deloadWeek": {
+    "when": "week_4",
+    "guidance": "Drop to 3 sets per exercise at 60% of working weight. Focus on the mind-muscle connection."
+  },
+  "workouts": [
+    {
+      "dayOfWeek": "monday",
+      "workoutName": "Push A",
+      "briefDescription": "Chest and shoulder compound work.",
+      "exercises": [
+        { "exerciseId": "bench-1",         "sets": 4, "reps": 8,  "restSeconds": 120 },
+        { "exerciseId": "incline-bench-1", "sets": 3, "reps": 10, "restSeconds": 90  },
+        { "exerciseId": "ohp-1",           "sets": 3, "reps": 10, "restSeconds": 90  },
+        { "exerciseId": "tricep-1",        "sets": 3, "reps": 12, "restSeconds": 60  }
+      ]
+    },
+    {
+      "dayOfWeek": "tuesday",
+      "workoutName": "Pull A",
+      "briefDescription": "Back and bicep pulling movements.",
+      "exercises": [
+        { "exerciseId": "pullup-1",      "sets": 4, "reps": 6,  "restSeconds": 120 },
+        { "exerciseId": "row-1",         "sets": 3, "reps": 10, "restSeconds": 90  },
+        { "exerciseId": "lat-pulldown-1","sets": 3, "reps": 12, "restSeconds": 90  },
+        { "exerciseId": "db-curl-1",     "sets": 3, "reps": 12, "restSeconds": 60  }
+      ]
+    },
+    {
+      "dayOfWeek": "wednesday",
+      "workoutName": "Legs",
+      "briefDescription": "Quad, hamstring, and glute development.",
+      "exercises": [
+        { "exerciseId": "squat-1",    "sets": 4, "reps": 8,  "restSeconds": 180 },
+        { "exerciseId": "rdl-1",      "sets": 3, "reps": 10, "restSeconds": 120 },
+        { "exerciseId": "leg-press-1","sets": 3, "reps": 12, "restSeconds": 90  },
+        { "exerciseId": "lunge-1",    "sets": 3, "reps": 10, "restSeconds": 90  }
+      ]
+    },
+    {
+      "dayOfWeek": "friday",
+      "workoutName": "Push B",
+      "briefDescription": "Higher-rep push session for volume accumulation.",
+      "exercises": [
+        { "exerciseId": "bench-1",         "sets": 4, "reps": 12, "restSeconds": 90 },
+        { "exerciseId": "incline-bench-1", "sets": 3, "reps": 15, "restSeconds": 60 },
+        { "exerciseId": "ohp-1",           "sets": 3, "reps": 12, "restSeconds": 90 },
+        { "exerciseId": "tricep-1",        "sets": 3, "reps": 15, "restSeconds": 60 }
+      ]
+    },
+    {
+      "dayOfWeek": "saturday",
+      "workoutName": "Pull B",
+      "briefDescription": "Higher-rep pull session for volume accumulation.",
+      "exercises": [
+        { "exerciseId": "cable-row-1",   "sets": 4, "reps": 12, "restSeconds": 90 },
+        { "exerciseId": "lat-pulldown-1","sets": 3, "reps": 15, "restSeconds": 60 },
+        { "exerciseId": "row-1",         "sets": 3, "reps": 12, "restSeconds": 90 },
+        { "exerciseId": "db-curl-1",     "sets": 3, "reps": 15, "restSeconds": 60 }
+      ]
+    }
+  ]
+}
