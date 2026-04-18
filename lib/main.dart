@@ -60,8 +60,8 @@ class _TemplateAppState extends ConsumerState<TemplateApp> {
     final router = ref.watch(routerProvider);
     return MaterialApp.router(
       title: 'Template App',
-      theme: FytterTheme.light,
-      darkTheme: FytterTheme.dark,
+      theme: AppTheme.light,
+      darkTheme: AppTheme.dark,
       themeMode: themeSettings.mode,
       routerConfig: router,
       localizationsDelegates: const [

@@ -7,16 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fytter/src/providers/auth_providers.dart';
 import 'package:fytter/src/providers/notification_settings_provider.dart';
 import 'package:fytter/src/services/notification_sync_service.dart';
-import 'package:timezone/timezone.dart' as tz;
 
-/// Channel ID used by the Cloud Function for workout reminders. Must match.
+/// Channel ID used by the Cloud Function for scheduled reminders. Must match.
 const String workoutRemindersChannelId = 'workout_reminders';
-
-/// Channel for rest timer completion with custom assembled audio (audio coaching).
-const String restCompleteChannelId = 'rest_complete';
-
-/// Notification id for the single rest-end notification (reused each time).
-const int restCompleteNotificationId = 9001;
 
 FlutterLocalNotificationsPlugin? _localNotificationsPlugin;
 
@@ -43,56 +36,11 @@ Future<void> initNotificationChannels() async {
   if (android != null) {
     await android.createNotificationChannel(const AndroidNotificationChannel(
       workoutRemindersChannelId,
-      'Workout reminders',
-      description: 'Daily reminder for scheduled program workouts',
+      'Scheduled reminders',
+      description: 'Scheduled alerts',
       importance: Importance.defaultImportance,
     ));
-    await android.createNotificationChannel(const AndroidNotificationChannel(
-      restCompleteChannelId,
-      'Rest complete',
-      description: 'Audio coaching when rest timer ends',
-      importance: Importance.high,
-      playSound: true,
-    ));
   }
-}
-
-/// Schedules a local notification to fire at [scheduledAt] with optional [customSoundPath].
-/// Used for rest timer completion (audio coaching). [customSoundPath] is a file path to the
-/// assembled Template 5 audio; if null, platform default sound is used.
-Future<void> scheduleRestEndNotification({
-  required DateTime scheduledAt,
-  String? customSoundPath,
-}) async {
-  if (kIsWeb) return;
-  final plugin = _localNotificationsPlugin;
-  if (plugin == null) return;
-  final androidDetails = AndroidNotificationDetails(
-    restCompleteChannelId,
-    'Rest complete',
-    channelDescription: 'Audio coaching when rest timer ends',
-    playSound: true,
-    sound: customSoundPath != null ? UriAndroidNotificationSound(customSoundPath) : null,
-  );
-  final darwinDetails = DarwinNotificationDetails(
-    presentSound: true,
-    sound: customSoundPath ?? 'default',
-  );
-  final details = NotificationDetails(
-    android: androidDetails,
-    iOS: darwinDetails,
-    macOS: darwinDetails,
-  );
-  await plugin.zonedSchedule(
-    restCompleteNotificationId,
-    'Rest over',
-    'Ready for your next set.',
-    tz.TZDateTime.from(scheduledAt.toUtc(), tz.UTC),
-    details,
-    androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-    uiLocalNotificationDateInterpretation:
-        UILocalNotificationDateInterpretation.absoluteTime,
-  );
 }
 
 /// Request notification permission (platform). Returns true if granted or already granted.

@@ -41,7 +41,7 @@ class AppFilterSortBar extends StatelessWidget {
   /// Placeholder text for the search field
   final String searchPlaceholder;
 
-  /// Current body-area filters ([ExerciseBodyRegion.name]; empty if none).
+  /// Current body-area filters ([FilterRegion.storageKey]; empty if none).
   final List<String> currentBodyAreaFilter;
 
   /// Coarse body-area choices shown as chips (fixed order).

@@ -2,8 +2,8 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/// Centralized theming for Fytter.
-class FytterTheme {
+/// Centralized theming for the app.
+class AppTheme {
   static String? _fontFamily() {
     // Avoid runtime fetches when disabled (e.g., tests/offline).
     if (GoogleFonts.config.allowRuntimeFetching == false) {

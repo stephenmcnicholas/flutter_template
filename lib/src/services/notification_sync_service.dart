@@ -8,8 +8,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 /// Returns map: dateKey -> (minuteKey -> list of item names).
 Map<String, Map<String, List<String>>> buildDailyScheduleMap({
   required DateTime today,
-  required Map<String, String> workoutIdToName,
-  required int reminderTimeMinutes,
   int days = 14,
 }) {
   final Map<String, Map<String, List<String>>> dailySchedule = {};
@@ -28,13 +26,10 @@ String _dateKey(DateTime date) {
 }
 
 /// Writes the daily schedule for [uid] to Firestore.
-/// [workoutIdToName] maps item ID to display name.
 Future<void> syncDailyScheduleToFirestore({
   required String uid,
   required String? fcmToken,
   required int timezoneOffsetMinutes,
-  required Map<String, String> workoutIdToName,
-  required int reminderTimeMinutes,
   int days = 14,
 }) async {
   final firestore = FirebaseFirestore.instance;
@@ -44,8 +39,6 @@ Future<void> syncDailyScheduleToFirestore({
   final today = DateTime(localNow.year, localNow.month, localNow.day);
   final dailySchedule = buildDailyScheduleMap(
     today: today,
-    workoutIdToName: workoutIdToName,
-    reminderTimeMinutes: reminderTimeMinutes,
     days: days,
   );
 
