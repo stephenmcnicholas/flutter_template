@@ -1,6 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:fytter/src/domain/workout_entry.dart';
-import 'package:fytter/src/domain/exercise_input_type.dart';
 
 enum WeightUnit { kg, lb }
 enum DistanceUnit { km, mi }
@@ -46,30 +44,6 @@ String formatDistance(double km, {DistanceUnit unit = DistanceUnit.km}) {
 String formatDistanceValue(double km, {DistanceUnit unit = DistanceUnit.km}) {
   final value = convertDistanceToDisplay(km, unit);
   return value.toStringAsFixed(1);
-}
-
-/// Formats a workout entry for display based on its input type.
-String formatWorkoutEntryDisplay(
-  WorkoutEntry entry,
-  ExerciseInputType inputType, {
-  WeightUnit weightUnit = WeightUnit.kg,
-  DistanceUnit distanceUnit = DistanceUnit.km,
-}) {
-  switch (inputType) {
-    case ExerciseInputType.repsAndWeight:
-      return '${entry.reps} reps @ ${formatWeight(entry.weight, unit: weightUnit)}';
-    case ExerciseInputType.repsOnly:
-      return '${entry.reps} reps';
-    case ExerciseInputType.distanceAndTime:
-      final distanceStr = entry.distance != null
-          ? formatDistance(entry.distance!, unit: distanceUnit)
-          : '0.0 ${distanceUnitLabel(distanceUnit)}';
-      final timeStr = entry.duration != null ? formatDuration(entry.duration!) : '0:00';
-      return '$distanceStr in $timeStr';
-    case ExerciseInputType.timeOnly:
-      final timeStr = entry.duration != null ? formatDuration(entry.duration!) : '0:00';
-      return timeStr;
-  }
 }
 
 /// Formats duration in seconds to "mm:ss" or "hh:mm:ss" format.

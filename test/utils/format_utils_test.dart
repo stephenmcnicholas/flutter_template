@@ -1,7 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/services.dart';
-import 'package:fytter/src/domain/exercise_input_type.dart';
-import 'package:fytter/src/domain/workout_entry.dart';
 import 'package:fytter/src/utils/format_utils.dart';
 
 void main() {
@@ -128,51 +126,6 @@ void main() {
       expect(isValidTime('1:60'), isFalse);
       expect(isValidTime('1:00:60'), isFalse);
       expect(isValidTime('invalid'), isFalse);
-    });
-  });
-
-  group('formatWorkoutEntryDisplay', () {
-    test('formats repsAndWeight entry', () {
-      final entry = WorkoutEntry(
-        id: 'e1',
-        exerciseId: 'ex1',
-        reps: 10,
-        weight: 60.0,
-        isComplete: false,
-      );
-      expect(
-        formatWorkoutEntryDisplay(entry, ExerciseInputType.repsAndWeight),
-        '10 reps @ 60.0 kg',
-      );
-    });
-
-    test('formats repsOnly entry', () {
-      final entry = WorkoutEntry(
-        id: 'e1',
-        exerciseId: 'ex1',
-        reps: 15,
-        weight: 0,
-        isComplete: false,
-      );
-      expect(
-        formatWorkoutEntryDisplay(entry, ExerciseInputType.repsOnly),
-        '15 reps',
-      );
-    });
-
-    test('formats timeOnly entry', () {
-      final entry = WorkoutEntry(
-        id: 'e1',
-        exerciseId: 'ex1',
-        reps: 0,
-        weight: 0,
-        duration: 90,
-        isComplete: false,
-      );
-      expect(
-        formatWorkoutEntryDisplay(entry, ExerciseInputType.timeOnly),
-        '1:30',
-      );
     });
   });
 
