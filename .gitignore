@@ -42,6 +42,9 @@ app.*.map.json
 # Firebase Functions TypeScript build output
 functions/lib/
 
+# Firebase Functions dependencies (not versioned)
+functions/node_modules/
+
 # Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile
