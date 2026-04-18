@@ -14,7 +14,7 @@ export class GeminiAdapter implements LLMAdapter {
     const vertexAI = new VertexAI({ project: this.projectId, location: 'us-central1' });
     const generativeModel = vertexAI.getGenerativeModel({ model: this.model });
     const result = await generativeModel.generateContent({
-      systemInstruction: { parts: [{ text: options.systemPrompt }] },
+      systemInstruction: { role: 'system', parts: [{ text: options.systemPrompt }] },
       contents: [{ role: 'user', parts: [{ text: options.userPrompt }] }],
     });
     const content = result.response.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
