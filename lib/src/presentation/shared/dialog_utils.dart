@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fytter/src/domain/exercise.dart';
 import 'package:fytter/src/presentation/shared/app_sheet_transition.dart';
 
 /// Prompts the user to enter a workout name. Returns the entered name, or null if cancelled.
@@ -131,15 +130,6 @@ Future<void> showInfoDialog(
       ],
     ),
   );
-}
-
-/// Given a list of WorkoutEntry and all available Exercise objects, returns the corresponding Exercise objects in order.
-List<Exercise> getExercisesForEntries(List<dynamic> entries, List<Exercise> allExercises) {
-  final exerciseMap = { for (var ex in allExercises) ex.id : ex };
-  return [
-    for (final entry in entries)
-      if (exerciseMap[entry.exerciseId] != null) exerciseMap[entry.exerciseId]!
-  ];
 }
 
 /// Prompts the user to enter reps and weight for a set. Returns a map { 'reps': int, 'weight': double } or null if cancelled.

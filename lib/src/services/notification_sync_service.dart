@@ -1,15 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fytter/src/domain/program.dart';
-import 'package:fytter/src/utils/program_utils.dart';
 
-/// Builds the next [days] days of workout reminders from [programs].
-/// Returns map: dateKey -> (minuteKey -> list of workout names).
-/// Only programs with [Program.notificationEnabled] are included.
-/// [reminderTimeMinutes] is a global user-level reminder time.
-/// Used by [syncDailyScheduleToFirestore] and by unit tests.
+/// Builds a daily schedule map from arbitrary program data.
+///
+/// [programs] is an iterable of objects exposing notification/schedule info.
+/// This is a template placeholder — concrete apps should provide typed data.
+///
+/// Returns map: dateKey -> (minuteKey -> list of item names).
 Map<String, Map<String, List<String>>> buildDailyScheduleMap({
   required DateTime today,
-  required List<Program> programs,
   required Map<String, String> workoutIdToName,
   required int reminderTimeMinutes,
   int days = 14,
@@ -22,20 +20,6 @@ Map<String, Map<String, List<String>>> buildDailyScheduleMap({
     dailySchedule[dateKey] = {};
   }
 
-  final minuteKey = reminderTimeMinutes.toString();
-  for (final program in programs) {
-    if (!program.notificationEnabled) continue;
-
-    for (final pw in program.schedule) {
-      final workoutDate = normalizeProgramDate(pw.scheduledDate);
-      final dateKey = _dateKey(workoutDate);
-      final map = dailySchedule[dateKey];
-      if (map == null) continue; // past or beyond window
-      final name = workoutIdToName[pw.workoutId] ?? pw.workoutId;
-      map.putIfAbsent(minuteKey, () => []).add(name);
-    }
-  }
-
   return dailySchedule;
 }
 
@@ -43,16 +27,12 @@ String _dateKey(DateTime date) {
   return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
 }
 
-/// Builds the next [days] days of workout reminders from [programs] and writes
-/// to Firestore for the given [uid], with [fcmToken] and [timezoneOffsetMinutes].
-/// [workoutIdToName] maps workout ID to display name.
-/// Only programs with [Program.notificationEnabled] are included.
-/// [reminderTimeMinutes] is a global user-level reminder time.
+/// Writes the daily schedule for [uid] to Firestore.
+/// [workoutIdToName] maps item ID to display name.
 Future<void> syncDailyScheduleToFirestore({
   required String uid,
   required String? fcmToken,
   required int timezoneOffsetMinutes,
-  required List<Program> programs,
   required Map<String, String> workoutIdToName,
   required int reminderTimeMinutes,
   int days = 14,
@@ -64,7 +44,6 @@ Future<void> syncDailyScheduleToFirestore({
   final today = DateTime(localNow.year, localNow.month, localNow.day);
   final dailySchedule = buildDailyScheduleMap(
     today: today,
-    programs: programs,
     workoutIdToName: workoutIdToName,
     reminderTimeMinutes: reminderTimeMinutes,
     days: days,
@@ -72,7 +51,6 @@ Future<void> syncDailyScheduleToFirestore({
 
   final batch = firestore.batch();
 
-  // User doc: token and timezone
   batch.set(userRef, {
     'fcmToken': fcmToken,
     'timezoneOffsetMinutes': timezoneOffsetMinutes,
@@ -95,7 +73,6 @@ Future<void> syncDailyScheduleToFirestore({
 }
 
 /// Updates only the FCM token and timezone for the user in Firestore.
-/// Use when the token is refreshed (e.g. onTokenRefresh) to avoid recomputing schedule.
 Future<void> updateFCMTokenInFirestore({
   required String uid,
   required String? fcmToken,

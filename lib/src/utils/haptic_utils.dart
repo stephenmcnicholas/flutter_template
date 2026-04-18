@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fytter/src/providers/rest_timer_settings_provider.dart';
 
 /// Abstracts haptic delivery so the service can be replaced in tests.
 abstract class HapticsService {
@@ -30,8 +29,13 @@ class SystemHapticsService implements HapticsService {
   }
 }
 
+/// Global switch for haptics. Defaults to enabled.
+///
+/// In a concrete app, wire this to a user settings provider.
+final hapticsEnabledProvider = Provider<bool>((ref) => true);
+
 /// Provides a [HapticsService] gated by the global haptics setting.
 final hapticsServiceProvider = Provider<HapticsService>((ref) {
-  final settings = ref.watch(restTimerSettingsProvider);
-  return SystemHapticsService(enabled: settings.hapticsEnabled);
+  final enabled = ref.watch(hapticsEnabledProvider);
+  return SystemHapticsService(enabled: enabled);
 });

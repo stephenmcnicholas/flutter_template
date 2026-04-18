@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'src/presentation/app_router.dart';
 import 'src/presentation/theme.dart'; // if you have a theme file
 import 'src/providers/auth_providers.dart';
-import 'src/providers/audio_providers.dart';
 import 'src/providers/theme_settings_provider.dart';
 import 'src/services/notification_service.dart';
 import 'src/services/notification_sync_service.dart';
@@ -28,26 +27,18 @@ Future<void> bootstrap({bool skipFirebase = false}) async {
     await initNotificationChannels();
   }
 
-  runApp(const ProviderScope(child: FytterApp()));
+  runApp(const ProviderScope(child: TemplateApp()));
 }
 
-class FytterApp extends ConsumerStatefulWidget {
-  const FytterApp({super.key});
+class TemplateApp extends ConsumerStatefulWidget {
+  const TemplateApp({super.key});
 
   @override
-  ConsumerState<FytterApp> createState() => _FytterAppState();
+  ConsumerState<TemplateApp> createState() => _TemplateAppState();
 }
 
-class _FytterAppState extends ConsumerState<FytterApp> {
+class _TemplateAppState extends ConsumerState<TemplateApp> {
   bool _tokenRefreshSetup = false;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(sentenceLibraryProvider.future);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +57,11 @@ class _FytterAppState extends ConsumerState<FytterApp> {
       });
     }
     final themeSettings = ref.watch(themeSettingsProvider);
+    final router = ref.watch(routerProvider);
     return MaterialApp.router(
-      title: 'Fytter',
-      theme: FytterTheme.light,      // or your ThemeData
-      darkTheme: FytterTheme.dark,   // optional
+      title: 'Template App',
+      theme: FytterTheme.light,
+      darkTheme: FytterTheme.dark,
       themeMode: themeSettings.mode,
       routerConfig: router,
       localizationsDelegates: const [

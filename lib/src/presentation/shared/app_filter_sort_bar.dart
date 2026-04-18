@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../domain/exercise_body_region.dart';
 import '../theme.dart';
 import 'app_text.dart';
+
+/// A generic filter region (body area, category, etc.) for [AppFilterSortBar].
+class FilterRegion {
+  final String storageKey;
+  final String filterLabel;
+
+  const FilterRegion({required this.storageKey, required this.filterLabel});
+}
 
 /// Compact filter and sort bar widget with minimal UI footprint.
 /// 
@@ -38,7 +45,7 @@ class AppFilterSortBar extends StatelessWidget {
   final List<String> currentBodyAreaFilter;
 
   /// Coarse body-area choices shown as chips (fixed order).
-  final List<ExerciseBodyRegion> bodyAreaRegions;
+  final List<FilterRegion> bodyAreaRegions;
 
   /// Current equipment filters (empty list if no filter)
   final List<String> currentEquipmentFilter;
@@ -250,7 +257,7 @@ class _SortButton extends StatelessWidget {
 /// Compact filter button that opens a tile-based filter sheet.
 class _FilterButton extends StatelessWidget {
   final List<String> currentBodyAreaFilter;
-  final List<ExerciseBodyRegion> bodyAreaRegions;
+  final List<FilterRegion> bodyAreaRegions;
   final List<String> currentEquipmentFilter;
   final List<String> equipmentOptions;
   final bool currentFavoriteFilter;
@@ -488,7 +495,7 @@ class _FilterButton extends StatelessWidget {
 }
 
 class _BodyAreaFilterTileWrap extends StatelessWidget {
-  final List<ExerciseBodyRegion> regions;
+  final List<FilterRegion> regions;
   final List<String> selectedKeys;
   final void Function(String storageKey, bool isSelected) onToggle;
 

@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fytter/src/providers/auth_providers.dart';
-import 'package:fytter/src/providers/data_providers.dart';
 import 'package:fytter/src/providers/notification_settings_provider.dart';
 import 'package:fytter/src/services/notification_sync_service.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -129,6 +128,9 @@ Future<String?> getFCMToken() async {
 
 /// Trigger sync of daily schedule to Firestore for the current user.
 /// No-op if user is not signed in or notifications are disabled.
+///
+/// In a concrete app, override this to supply program/schedule data to
+/// [syncDailyScheduleToFirestore].
 Future<void> syncNotificationSchedule(WidgetRef ref) async {
   if (kIsWeb) return;
   if (Firebase.apps.isEmpty) return;
@@ -140,22 +142,14 @@ Future<void> syncNotificationSchedule(WidgetRef ref) async {
   if (!notifSettings.notificationsEnabled) return;
 
   final token = await getFCMToken();
-  final programRepo = ref.read(programRepositoryProvider);
-  final workoutRepo = ref.read(workoutRepositoryProvider);
-
-  final programs = await programRepo.findAll();
-  final workouts = await workoutRepo.findAll();
-  final workoutIdToName = {for (final w in workouts) w.id: w.name};
-
   final offsetMinutes = DateTime.now().timeZoneOffset.inMinutes;
 
-  await syncDailyScheduleToFirestore(
+  // Template: no schedule data. Concrete apps should supply program/schedule
+  // data here and call syncDailyScheduleToFirestore.
+  await updateFCMTokenInFirestore(
     uid: user.uid,
     fcmToken: token,
     timezoneOffsetMinutes: offsetMinutes,
-    programs: programs,
-    workoutIdToName: workoutIdToName,
-    reminderTimeMinutes: notifSettings.reminderTimeMinutes,
   );
 }
 
