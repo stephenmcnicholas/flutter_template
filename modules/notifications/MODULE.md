@@ -4,6 +4,7 @@
 
 **Files:**
 - `lib/src/services/notification_service.dart`
+- `lib/src/services/notification_sync_service.dart`
 - `lib/src/providers/notification_settings_provider.dart`
 - `pubspec.yaml` dependencies: `firebase_messaging`, `flutter_local_notifications`, `timezone`
 
@@ -11,7 +12,8 @@
 
 **To remove this module:**
 1. Delete `lib/src/services/notification_service.dart`
-2. Delete `lib/src/providers/notification_settings_provider.dart`
-3. Remove FCM token setup from `main.dart`
-4. Remove from `pubspec.yaml`: `firebase_messaging`, `flutter_local_notifications`, `timezone`
-5. Remove notification permission request from onboarding flow
+2. Delete `lib/src/services/notification_sync_service.dart`
+3. Delete `lib/src/providers/notification_settings_provider.dart`
+4. Remove FCM token setup from `main.dart`
+5. Remove from `pubspec.yaml`: `firebase_messaging`, `flutter_local_notifications`, `timezone`
+6. Remove notification permission request from onboarding flow
