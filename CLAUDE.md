@@ -2,6 +2,18 @@
 
 This file provides context for Claude Code when working in any project built from `flutter_template`. It is the master reference for all technical decisions, conventions, and patterns.
 
+## Starting a new app
+
+If the user has just opened this directory and wants to build a new app, your first and only action is:
+
+**Invoke `superpowers:brainstorming` before doing anything else.**
+
+Do not write code, scaffold a project, or ask clarifying questions before brainstorming. The brainstorm produces the spec, the project CLAUDE.md, the module inclusion decisions, and the implementation plan — in that order. Nothing gets built until that output exists and the user has approved it.
+
+See `processes/CLAUDE.md` for the full workflow. See `processes/bootstrap.md` for the bootstrapping steps that follow.
+
+---
+
 ## What this is
 
 A production-quality Flutter template for building iOS + Android apps. Based on the `fytter` fitness app codebase, stripped to generic infrastructure. Every significant decision has already been made — do not relitigate them.
