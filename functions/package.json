@@ -3,7 +3,7 @@
   "description": "Cloud Functions scaffold for Flutter template",
   "main": "lib/index.js",
   "engines": {
-    "node": "20"
+    "node": "22"
   },
   "scripts": {
     "build": "tsc",
@@ -15,7 +15,7 @@
     "@anthropic-ai/sdk": "^0.39.0",
     "@google-cloud/vertexai": "^1.10.0",
     "firebase-admin": "^11.11.0",
-    "firebase-functions": "^4.5.0"
+    "firebase-functions": "^6.0.0"
   },
   "devDependencies": {
     "@types/jest": "^29.0.0",

@@ -5,8 +5,8 @@ import { createAdapter } from './factory';
 // Copy and adapt this pattern for each AI feature in your app.
 // Flutter app calls this via:
 //   FirebaseFunctions.instance.httpsCallable('exampleAiFunction').call({'prompt': 'Hello'})
-export const exampleAiFunction = functions.https.onCall(async (data, context) => {
-  const { prompt } = data;
+export const exampleAiFunction = functions.https.onCall(async (request) => {
+  const { prompt } = request.data;
 
   if (!prompt || typeof prompt !== 'string') {
     throw new functions.https.HttpsError('invalid-argument', 'prompt is required');
