@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -12,6 +13,7 @@ import 'src/presentation/app_router.dart';
 import 'src/presentation/theme.dart';
 import 'src/providers/auth_providers.dart';
 import 'src/providers/theme_settings_provider.dart';
+import 'src/services/app_logger.dart';
 import 'src/services/notification_service.dart';
 import 'src/services/notification_sync_service.dart';
 
@@ -24,6 +26,8 @@ Future<void> bootstrap({bool skipFirebase = false}) async {
 
   GoogleFonts.config.allowRuntimeFetching = false;
 
+  AppLogger.event(AppEvent.appLaunch);
+
   if (!skipFirebase && !kIsWeb) {
     await Firebase.initializeApp();
 
@@ -35,6 +39,10 @@ Future<void> bootstrap({bool skipFirebase = false}) async {
       // ignore: deprecated_member_use
       appleProvider: kDebugMode ? AppleProvider.debug : AppleProvider.deviceCheck,
     );
+
+    if (!kDebugMode) {
+      await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
+    }
 
     await initNotificationChannels();
 
