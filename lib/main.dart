@@ -1,11 +1,15 @@
+import 'dart:async';
+
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'src/presentation/app_router.dart';
-import 'src/presentation/theme.dart'; // if you have a theme file
+import 'src/presentation/theme.dart';
 import 'src/providers/auth_providers.dart';
 import 'src/providers/theme_settings_provider.dart';
 import 'src/services/notification_service.dart';
@@ -18,16 +22,41 @@ Future<void> main() async {
 Future<void> bootstrap({bool skipFirebase = false}) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Disable runtime font fetching to prevent AssetManifest.json errors
-  // Fonts will fall back to system fonts if Google Fonts can't load
   GoogleFonts.config.allowRuntimeFetching = false;
 
   if (!skipFirebase && !kIsWeb) {
     await Firebase.initializeApp();
+
+    // App Check must be activated before any other Firebase service calls.
+    // Debug provider in debug builds; production providers on release.
+    await FirebaseAppCheck.instance.activate(
+      // ignore: deprecated_member_use
+      androidProvider: kDebugMode ? AndroidProvider.debug : AndroidProvider.playIntegrity,
+      // ignore: deprecated_member_use
+      appleProvider: kDebugMode ? AppleProvider.debug : AppleProvider.deviceCheck,
+    );
+
     await initNotificationChannels();
+
+    // Route Flutter framework errors to Crashlytics.
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+    // Route uncaught async errors outside the Flutter framework to Crashlytics.
+    PlatformDispatcher.instance.onError = (error, stack) {
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      return true;
+    };
   }
 
-  runApp(const ProviderScope(child: TemplateApp()));
+  // Wrap runApp so zone errors are also caught by Crashlytics.
+  await runZonedGuarded(
+    () async => runApp(const ProviderScope(child: TemplateApp())),
+    (error, stack) {
+      if (!kIsWeb) {
+        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      }
+    },
+  );
 }
 
 class TemplateApp extends ConsumerStatefulWidget {
