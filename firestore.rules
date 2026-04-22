@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Baseline rule: users can only read/write their own data.
+    // All user data lives under users/{uid}/...
+    // Tighten these rules before launch — add collection-specific rules
+    // to restrict which fields can be written and validate data shape.
+    match /users/{uid}/{document=**} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+    }
+
+    // Rate limiting counters written by Cloud Functions (server-side only).
+    // Client reads are allowed so the app can show usage state if needed.
+    match /usageLimits/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false; // Cloud Functions only
+    }
+
+  }
+}
