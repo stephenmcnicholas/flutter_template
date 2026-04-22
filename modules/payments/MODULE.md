@@ -15,3 +15,25 @@
 **To remove this module:**
 1. Delete `lib/src/providers/premium_provider.dart`
 2. Remove any paywall screens or premium-gating logic from the app
+
+## In-app review prompt (pre-launch)
+
+Every consumer app on the App Store and Play Store should prompt for a review after the user has experienced core value.
+
+**Package:** `in_app_review` (add to `pubspec.yaml`)
+
+**Pattern:**
+```dart
+import 'package:in_app_review/in_app_review.dart';
+
+Future<void> maybeRequestReview() async {
+  final inAppReview = InAppReview.instance;
+  if (await inAppReview.isAvailable()) {
+    await inAppReview.requestReview();
+  }
+}
+```
+
+**When to trigger:** After the user completes their Nth meaningful action (e.g., third use of the app's core feature). Never prompt more than once — both platforms enforce a once-per-365-days limit but your code should also track and respect it.
+
+**Note:** The native review dialog cannot be tested in debug mode — use `openStoreListing()` in debug instead.

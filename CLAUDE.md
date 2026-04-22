@@ -39,7 +39,7 @@ Each module is self-contained with its own `MODULE.md` in the `modules/` directo
 Before starting a new project, read each MODULE.md and decide: include or remove.
 Follow the removal checklist in MODULE.md exactly.
 
-Modules: `auth`, `database`, `notifications`, `ai`, `payments`, `onboarding`
+Modules: `auth`, `database`, `notifications`, `ai`, `payments`, `onboarding`, `sync`
 
 ## Coding conventions
 
@@ -76,6 +76,12 @@ Modules: `auth`, `database`, `notifications`, `ai`, `payments`, `onboarding`
 - All colours, typography, spacing, and radii from `lib/src/presentation/theme.dart` tokens.
 - Access via `context.themeExt<AppColors>()` pattern (or equivalent theme extension).
 - Never hardcode hex values or font sizes in widgets.
+
+**Analytics:**
+- Use `AppLogger.event(AppEvent.name)` for all analytics call sites
+- Define event name constants in `AppEvent` in `lib/src/services/app_logger.dart`
+- Never pass PII (user ID, email, name, health data) to `AppLogger`
+- In debug builds, events print to console. In release, they go to Firebase Analytics.
 
 ## Adding a new feature
 

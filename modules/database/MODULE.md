@@ -22,3 +22,15 @@
 5. Remove repository implementations that use the database
 
 **Note:** If removing local database, ensure all data access goes through Firestore directly. Consider if offline support is still required.
+
+## GDPR data export (pre-launch requirement for EU apps)
+
+GDPR Article 20 (right to data portability) requires that users can export their data on request.
+
+**Implementation pattern:**
+1. Add a "Export my data" action in Settings
+2. Query all user-owned Drift tables
+3. Serialize the results to JSON
+4. Share via the system share sheet (`Share.share(jsonString)` from the `share_plus` package)
+
+The implementation is app-specific (which tables to include), but the pattern is generic. Plan for this when designing your Drift schema — make sure every table has a clear user ownership relationship.
